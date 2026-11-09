@@ -1,0 +1,5 @@
+mode,payload_bytes,overhead_bytes,wire_bytes,seal_us_per_msg,open_us_per_msg
+plain,64,4,68,0.17,0.28
+aes-gcm,64,32,96,1.3,1.07
+chacha20,64,32,96,2.44,2.08
+ascon-aead128,64,36,100,4.65,4.6
