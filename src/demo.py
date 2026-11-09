@@ -12,14 +12,14 @@ sys.path.insert(0, os.path.dirname(__file__))
 from attack import Recorder  # noqa: E402
 from crypto_modes import SecureChannel, available_modes  # noqa: E402
 from gateway import Gateway  # noqa: E402
-from sensor import SoilSensor  # noqa: E402
+from sensor import build_sensors  # noqa: E402
 
 
 def run(mode, readings, sensors=3, attack=False, replay_protection=True):
     channel = SecureChannel(mode)
     gateway = Gateway(channel, replay_protection=replay_protection)
     recorder = Recorder()
-    devices = [SoilSensor(f"plot-{i}", seed=i) for i in range(sensors)]
+    devices = build_sensors(sensors)
     for _ in range(readings):
         for dev in devices:
             seq, payload = dev.read()

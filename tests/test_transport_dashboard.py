@@ -58,8 +58,50 @@ class HistoryTests(unittest.TestCase):
         state = m.snapshot()
         self.assertEqual(state["devices"]["plot-0"]["history"], [50.0, 45.0, 40.0])
         self.assertEqual(state["devices"]["plot-0"]["accepted_total"], 3)
-        self.assertEqual(state["totals"], {"accepted": 3, "rejected": 1})
+        self.assertEqual(state["totals"]["accepted"], 3)
+        self.assertEqual(state["totals"]["rejected"], 1)
         self.assertEqual(state["meta"]["mode"], "aes-gcm")
+
+    def test_event_log_records_status_changes(self):
+        m = Monitor()
+        m.record_accept("plot-0", {"moisture": 55.0, "temp_c": 19.0, "dry_at": 30})
+        m.record_accept("plot-0", {"moisture": 20.0, "temp_c": 19.0, "dry_at": 30})
+        m.record_accept("plot-0", {"moisture": 35.0, "temp_c": 19.0, "dry_at": 30})
+        kinds = [e["message"] for e in m.events()]
+        self.assertTrue(any("needs water" in k for k in kinds))
+        self.assertTrue(any("back above threshold" in k for k in kinds))
+
+    def test_rejections_in_one_burst_become_one_event(self):
+        m = Monitor()
+        m.record_accept("plot-0", {"moisture": 55.0, "temp_c": 19.0, "dry_at": 30})
+        for dev in ("plot-0", "plot-1", "plot-2"):
+            m.record_reject(dev)
+        security = [e for e in m.events() if e["kind"] == "security"]
+        self.assertEqual(len(security), 1)
+        self.assertEqual(security[0]["count"], 3)
+        self.assertIn("3 replayed", security[0]["message"])
+
+    def test_watering_events_are_rate_limited(self):
+        m = Monitor()
+        m.record_accept("plot-0", {"moisture": 20.0, "temp_c": 19.0, "dry_at": 30})
+        m.record_accept("plot-0", {"moisture": 40.0, "temp_c": 19.0, "dry_at": 30})
+        m.record_accept("plot-0", {"moisture": 15.0, "temp_c": 19.0, "dry_at": 30})
+        m.record_accept("plot-0", {"moisture": 35.0, "temp_c": 19.0, "dry_at": 30})
+        water = [e for e in m.events() if e["kind"] == "water"]
+        self.assertEqual(len(water), 1)
+
+    def test_dry_at_comes_from_the_plant(self):
+        m = Monitor()
+        m.record_accept("cy-03", {"moisture": 20.0, "temp_c": 20.0, "dry_at": 15})
+        self.assertEqual(m.snapshot()["devices"]["cy-03"]["status"], "healthy")
+
+    def test_zones_grouped(self):
+        m = Monitor()
+        m.record_accept("gn-01", {"moisture": 50.0, "temp_c": 20.0, "dry_at": 35, "zone": "Greenhouse North"})
+        m.record_accept("hg-01", {"moisture": 50.0, "temp_c": 20.0, "dry_at": 20, "zone": "Herb Garden"})
+        zones = m.snapshot()["zones"]
+        self.assertEqual(zones["Greenhouse North"], ["gn-01"])
+        self.assertEqual(zones["Herb Garden"], ["hg-01"])
 
     def test_dashboard_page_and_state_served(self):
         import threading
@@ -71,11 +113,13 @@ class HistoryTests(unittest.TestCase):
         try:
             page = urllib.request.urlopen("http://127.0.0.1:8091/").read().decode()
             state = urllib.request.urlopen("http://127.0.0.1:8091/state").read().decode()
+            events = urllib.request.urlopen("http://127.0.0.1:8091/events").read().decode()
         finally:
             server.shutdown()
             server.server_close()
         self.assertIn("Smart Plant Monitor", page)
         self.assertIn("plot-0", state)
+        self.assertTrue(events.startswith("["))
 
 
 @unittest.skipUnless(broker_running(), "no MQTT broker on localhost:1883")

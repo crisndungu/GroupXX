@@ -1,0 +1,12 @@
+{
+  "label": "Name-MacBook-Model",
+  "node": "macs-MacBook-Pro.local",
+  "system": "Darwin 24.6.0",
+  "machine": "x86_64",
+  "cpu": "Intel(R) Core(TM) i7-7567U CPU @ 3.50GHz",
+  "aes_hardware": true,
+  "python": "3.9.6",
+  "cryptography": "50.0.2",
+  "ascon_built": true,
+  "timestamp": "2026-11-09 11:02:55"
+}
