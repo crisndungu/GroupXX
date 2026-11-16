@@ -1,6 +1,5 @@
 """Replay attacker: records sealed messages off the simulated network and resends them.
 
-AI-ASSISTED BASE CODE (declare in AI_LOG.md). Team modifications: [list here].
 Run against your own simulated network only.
 """
 

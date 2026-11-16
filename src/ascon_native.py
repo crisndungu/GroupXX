@@ -1,6 +1,5 @@
 """Ascon-AEAD128 via the official Ascon C reference implementation (NIST SP 800-232 design).
 
-AI-ASSISTED BASE CODE (declare in AI_LOG.md). Team modifications: [list here].
 
 The C sources in native/ come from github.com/ascon/ascon-c (opt64 build).
 They are compiled into a shared library by native/build.sh (Linux or macOS),

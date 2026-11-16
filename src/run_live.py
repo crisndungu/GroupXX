@@ -1,6 +1,5 @@
 """Live end-to-end run: 12 sensors publish over MQTT, the gateway verifies them, the dashboard shows them.
 
-AI-ASSISTED BASE CODE (declare in AI_LOG.md). Team modifications: [list here].
 Prerequisite: a running MQTT broker on localhost:1883 (Mosquitto).
 Usage:
     python src/run_live.py --mode aes-gcm --plants 12 --seconds 0 --attack

@@ -1,6 +1,5 @@
 """Gateway: opens sealed messages, enforces replay protection, decodes readings.
 
-AI-ASSISTED BASE CODE (declare in AI_LOG.md). Team modifications: [list here].
 """
 import json
 

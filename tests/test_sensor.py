@@ -1,6 +1,5 @@
 """Tests for the 12-plant simulation: profiles, zones, and payload contents.
 
-AI-ASSISTED BASE CODE (declare in AI_LOG.md). Team modifications: [list here].
 """
 import json
 import os

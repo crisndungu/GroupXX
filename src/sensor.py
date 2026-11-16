@@ -1,7 +1,5 @@
 """Simulated soil sensors for a 12-plant, four-zone site.
 
-AI-ASSISTED BASE CODE (declare in AI_LOG.md). Team modifications: [list here].
-
 Each plant has a profile: species, zone, dry threshold, drying rate, and rainfall
 and irrigation behaviour. Temperature follows a daily cycle, and evaporation
 depends on temperature, so the moisture traces look like real soil rather than

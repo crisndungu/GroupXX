@@ -1,6 +1,5 @@
 """Unit tests for the secure channel, gateway and replay protection.
 
-AI-ASSISTED BASE CODE (declare in AI_LOG.md). Team modifications: [list here].
 Run from the project root: python -m unittest discover -s tests -v
 """
 import os

@@ -1,6 +1,5 @@
 """One-command evaluation for the team: tests, benchmarks, replay experiment, and report tables.
 
-AI-ASSISTED BASE CODE (declare in AI_LOG.md). Team modifications: [list here].
 
 Each team member runs this on their own machine:
 

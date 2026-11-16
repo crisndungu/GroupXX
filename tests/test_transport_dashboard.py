@@ -1,6 +1,5 @@
 """Tests for the dashboard status logic and an optional MQTT round trip.
 
-AI-ASSISTED BASE CODE (declare in AI_LOG.md). Team modifications: [list here].
 The MQTT test needs a broker on localhost:1883 and is skipped otherwise.
 """
 import os

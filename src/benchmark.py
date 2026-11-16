@@ -1,6 +1,5 @@
 """Measure per-message overhead and seal/open time for each mode.
 
-AI-ASSISTED BASE CODE (declare in AI_LOG.md). Team modifications: [list here].
 Usage: python src/benchmark.py --messages 5000 --payload 64
 Writes results/benchmark.csv
 """

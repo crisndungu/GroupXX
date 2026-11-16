@@ -1,7 +1,5 @@
 """MQTT transport: sensors publish sealed messages, the gateway subscribes.
 
-AI-ASSISTED BASE CODE (declare in AI_LOG.md). Team modifications: [list here].
-
 Topic layout:  plant/<device_id>/telemetry   payload = sealed blob (see crypto_modes.py)
 Requires:      pip install paho-mqtt    and a broker, e.g. Mosquitto on localhost:1883
 """

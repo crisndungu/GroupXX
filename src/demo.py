@@ -1,6 +1,5 @@
 """Run one simulated session: sensors -> channel -> gateway, with an optional replay attack.
 
-AI-ASSISTED BASE CODE (declare in AI_LOG.md). Team modifications: [list here].
 Usage: python src/demo.py --mode chacha20 --readings 50 --attack
 """
 import argparse

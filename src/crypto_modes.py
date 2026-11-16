@@ -1,7 +1,5 @@
 """Message protection modes for constrained IoT sensor messages.
 
-AI-ASSISTED BASE CODE (declare in AI_LOG.md). Team modifications: [list here].
-
 Modes:
     plain      no protection (baseline only)
     aes-gcm    AES-128-GCM, 12-byte nonce, 16-byte tag (cryptography library)

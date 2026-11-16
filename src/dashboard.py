@@ -1,6 +1,5 @@
 """Smart Plant Monitor dashboard: zones, urgency sorting, plant detail, and a managed event log.
 
-AI-ASSISTED BASE CODE (declare in AI_LOG.md). Team modifications: [list here].
 Open http://localhost:8080 while run_live.py is running. JSON endpoints: /state, /events.
 No external libraries or network requests: charts are drawn in SVG by the page itself.
 """

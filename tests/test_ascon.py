@@ -1,6 +1,5 @@
 """Known-answer tests for the native Ascon-AEAD128 wrapper.
 
-AI-ASSISTED BASE CODE (declare in AI_LOG.md). Team modifications: [list here].
 Vectors: tests/ascon_kat_subset.txt, first 200 records of LWC_AEAD_KAT_128_128.txt
 from github.com/ascon/ascon-c (official NIST LWC known-answer file).
 """
