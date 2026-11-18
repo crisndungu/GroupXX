@@ -16,6 +16,13 @@ Python 3.10 or later, gcc (for the Ascon library), and a Mosquitto broker for th
     cd native && sh build.sh && cd ..        (Windows: build.bat with MinGW-w64 gcc)
     mosquitto -p 1883                        (live run only; Windows: use the Mosquitto installer)
 
+On Windows PowerShell, the checked-in `.venv` is macOS-specific. Create a Windows environment instead:
+
+    python -m venv .venv-win
+    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+    . .\.venv-win\Scripts\Activate.ps1
+    python -m pip install -r requirements.txt
+
 ## Run
     python src/demo.py --mode chacha20 --readings 50 --attack
     python src/demo.py --mode ascon-aead128 --readings 50 --attack --no-replay-protection
