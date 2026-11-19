@@ -1,0 +1,12 @@
+{
+  "label": "HP-Elitebook-820-G4",
+  "node": "DESKTOP-85MRABC",
+  "system": "Windows 11",
+  "machine": "AMD64",
+  "cpu": "Intel64 Family 6 Model 142 Stepping 9, GenuineIntel",
+  "aes_hardware": null,
+  "python": "3.12.10",
+  "cryptography": "50.0.2",
+  "ascon_built": true,
+  "timestamp": "2026-11-18 15:22:15"
+}
